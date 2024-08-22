@@ -22,14 +22,29 @@ describe("Player", () => {
   });
 
   describe("scores the sum of the rolls when the frame is incomplete", () => {
-    it.each([
-      [0, 5],
-    ])("scores %i when rolls is %i", (score, roll) => {
+    it("scores 0 when only 1 roll is made", () => {
       const player = new Player();
 
-      player.roll(roll);
+      player.roll(5);
 
-      expect(player.score()).toBe(score);
+      expect(player.score()).toBe(0);
+    });
+
+    it("scores 0 when the first roll is a strike", () => {
+      const player = new Player();
+
+      player.roll(10);
+
+      expect(player.score()).toBe(0);
+    });
+
+    it("scores 0 when the second roll is a spare", () => {
+      const player = new Player();
+
+      player.roll(5);
+      player.roll(5);
+
+      expect(player.score()).toBe(0);
     });
   });
 });
