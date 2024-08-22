@@ -6,6 +6,10 @@ export class Player {
   }
 
   score(): number {
+    if (this.pins.length <= 1) {
+      return 0;
+    }
+
     return this.pins.reduce((previousValue, currentValue) => previousValue + currentValue);
   }
 }
