@@ -10,6 +10,14 @@ export class Player {
       return 0;
     }
 
-    return this.pins.reduce((previousValue, currentValue) => previousValue + currentValue);
+    if (this.pinsFromFrame(1) === 10) {
+      return 0;
+    }
+
+    return this.pins.reduce((acc, curr) => acc + curr);
+  }
+
+  private pinsFromFrame(frame: number) {
+    return this.pins[frame * 2 - 2] + this.pins[frame * 2 - 1];
   }
 }
