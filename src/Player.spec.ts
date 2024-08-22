@@ -7,21 +7,15 @@ import { Player } from "./Player.js";
 // roll (10) -> score 0 (strike need 1 more roll to calculate frame)
 
 describe("Player", () => {
-  it("scores 5 points", () => {
+  it.each([
+    [5, 0, 5],
+    [6, 1, 5]
+  ])("scores %i points", (score, roll1, roll2) => {
     const player = new Player();
 
-    player.roll(5);
-    player.roll(0);
+    player.roll(roll1);
+    player.roll(roll2);
 
-    expect(player.score()).toBe(5);
-  });
-
-  it("scores 6 points", () => {
-    const player = new Player();
-
-    player.roll(5);
-    player.roll(1);
-
-    expect(player.score()).toBe(6);
+    expect(player.score()).toBe(score);
   });
 });
