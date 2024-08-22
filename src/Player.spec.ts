@@ -15,4 +15,13 @@ describe("Player", () => {
 
     expect(player.score()).toBe(5);
   });
+
+  it("scores 6 points", () => {
+    const player = new Player();
+
+    player.roll(5);
+    player.roll(1);
+
+    expect(player.score()).toBe(6);
+  });
 });
