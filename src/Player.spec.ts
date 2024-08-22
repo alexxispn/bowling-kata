@@ -7,15 +7,29 @@ import { Player } from "./Player.js";
 // roll (10) -> score 0 (strike need 1 more roll to calculate frame)
 
 describe("Player", () => {
-  it.each([
-    [5, 0, 5],
-    [6, 1, 5]
-  ])("scores %i points", (score, roll1, roll2) => {
-    const player = new Player();
+  describe("scores the sum of the rolls when the frame is complete", () => {
+    it.each([
+      [5, 0, 5],
+      [6, 1, 5]
+    ])("scores %i when rolls are %i and %i", (score, roll1, roll2) => {
+      const player = new Player();
 
-    player.roll(roll1);
-    player.roll(roll2);
+      player.roll(roll1);
+      player.roll(roll2);
 
-    expect(player.score()).toBe(score);
+      expect(player.score()).toBe(score);
+    });
+  });
+
+  describe("scores the sum of the rolls when the frame is incomplete", () => {
+    it.each([
+      [0, 5],
+    ])("scores %i when rolls is %i", (score, roll) => {
+      const player = new Player();
+
+      player.roll(roll);
+
+      expect(player.score()).toBe(score);
+    });
   });
 });
