@@ -1,9 +1,11 @@
 export class Player {
+  private pins: number[] = [];
+
   roll(pins: number): void {
-    throw new Error("not implemented");
+    this.pins.push(pins);
   }
 
   score(): number {
-    return 5;
+    return this.pins.reduce((previousValue, currentValue) => previousValue + currentValue);
   }
 }
